@@ -58,9 +58,7 @@ fn solve(input: &str) -> i32 {
         }
     }
 
-    let mut d = input.to_string();
-
-    let r = frequencies
+    frequencies
         .iter()
         .map(|f| {
             antennas
@@ -77,30 +75,10 @@ fn solve(input: &str) -> i32 {
                     })
                 })
                 .flatten()
-                .map(|e| {
-                    d = d
-                        .trim()
-                        .split('\n')
-                        .enumerate()
-                        .map(|(y, l)| {
-                            l.chars()
-                                .enumerate()
-                                .map(|(x, c)| if Pos(x as i32, y as i32) == e { '#' } else { c })
-                                .collect::<String>()
-                        })
-                        .join("\n");
-
-                    e
-                })
-                .unique()
-                .count() as i32
         })
-        .sum();
-
-    println!("{}", d.chars().filter(|c| *c == '#').count());
-    println!("{}", d);
-
-    r
+        .flatten()
+        .unique()
+        .count() as i32
 }
 
 fn antinodes(a: Pos, b: Pos) -> [Pos; 2] {
@@ -117,12 +95,5 @@ mod tests {
     fn test_antinodes() {
         let res = antinodes(Pos(3, 2), Pos(4, 1));
         assert_eq!(res, [Pos(2, 3), Pos(5, 0)]);
-    }
-
-    #[test]
-    fn test_solve() {
-        let input = "<example from website>";
-
-        assert_eq!(solve(input), 14);
     }
 }
