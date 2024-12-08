@@ -13,4 +13,4 @@ Suppose you want to run day 3 part 1 solution.
 
 You should download your input file and save it to `inputs/day3.txt`.
 
-Then you should run `cargo run --bin d3p1`.
+Then you should run `cargo run --release --bin d3p1`.
