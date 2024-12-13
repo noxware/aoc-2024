@@ -1,3 +1,4 @@
+use itertools::Itertools;
 use std::collections::HashMap;
 
 #[derive(Debug, Copy, Clone, PartialEq, Eq, Hash, Default)]
@@ -76,6 +77,7 @@ fn solve(input: &str) -> i32 {
                 .flatten()
                 .flatten()
                 .flatten()
+                .unique()
                 .count() as i32
         })
         .sum::<i32>()
